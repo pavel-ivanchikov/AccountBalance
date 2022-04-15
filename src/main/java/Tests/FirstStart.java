@@ -36,22 +36,21 @@ public class FirstStart {
 
     public static void main(String[] args) throws InterruptedException, FileNotFoundException {
 
-        System.out.println("Тест начался");
+        System.out.println("Первый запуск приложения");
 
         //MyLife myLife = new MyLife();
         MyLife myLife = MyLife.getMyLife();
         TimeUnit.SECONDS.sleep(1);
-        myLife.addMessage("Это уже второе сообщение в журнале MyLife");
+        myLife.addMessage("Второе сообщение, потому что первое - служебное");
         Person person = myLife.getNewPerson();
         TimeUnit.SECONDS.sleep(1);
-        person.addMessage("Всё касается этого человека буду писать сюда");
-        myLife.addMessage("В жунал человека я буду записывать всё что его касается, " +
-                "а сюда я буду записывать все остальные мысли");
-        person.setName("Alex");
+        person.addMessage("Второе сообщение");
+        myLife.addMessage("Четвёртое сообщение " );
+        person.setName("Человек2");
         person.addMessage("Ой, случайно не то имя набрал...");
-        person.setName("Paul");
+        person.setName("Человек1");
         Debt debt = person.getNewDebt();
-        debt.addMessage("Он скоро собирается взять в долг, " +
+        debt.addMessage("Человек1 скоро собирается взять в долг " +
                 "создам процесс заранее");
         TimeUnit.SECONDS.sleep(1);
         debt.iGive(new BigDecimal(1800));

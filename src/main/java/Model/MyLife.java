@@ -31,6 +31,7 @@ public class MyLife extends Process {
             }
         }
         //       return localInstance;
+        instance.type = ProcessTypes.MyLife;
         return instance;
     }
 
@@ -44,6 +45,7 @@ public class MyLife extends Process {
                 }
             }
         }
+        instance.type = ProcessTypes.MyLife;
         return localInstance;
     }
 

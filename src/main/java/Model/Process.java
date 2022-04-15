@@ -45,6 +45,8 @@ public abstract class Process {
     /** Это главное свойство объекта процесс */
     protected List<Message<LocalDateTime, String>> logBook;
 
+    public ProcessTypes type;
+
     protected Process() throws FileNotFoundException {
         reason = null;
 
@@ -134,7 +136,7 @@ public abstract class Process {
 //============9 марта, 11 урок, 34:00 на записи
     private void addMessageToDataBase(Message<LocalDateTime,String> message) throws FileNotFoundException {
         FileOutputStream fileOutputStream = new FileOutputStream("C:/" +
-                "DataBaseAccountingOfDebts/" + id.toString()+".txt",true);
+                "AccountBalance/" + "DataBase1/" + id.toString()+".txt",true);
         PrintWriter str = new PrintWriter(new BufferedWriter(new OutputStreamWriter(fileOutputStream)));
         str.write(message.getDate().toString() + " ");
         str.write(message.getText() + "\n");

@@ -15,10 +15,13 @@ public class Person extends Process implements HavingName {
 
     Person(Process parent) throws FileNotFoundException{
         super(parent);
+        this.type = ProcessTypes.Person;
     }
 
     Person(Long id){
+
         super(id);
+        this.type = ProcessTypes.Person;
     }
 
     public void setName(String string) throws FileNotFoundException {

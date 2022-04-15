@@ -18,10 +18,13 @@ public class Debt extends Process implements MeasurableInRubles{
     //primary constructor
     Debt(Process parent) throws FileNotFoundException {
         super(parent);
+        this.type = ProcessTypes.Debt;
     }
 
     Debt(Long id){
+
         super(id);
+        this.type = ProcessTypes.Debt;
     }
 
     public void setDeadLine(LocalDateTime localDateTime) throws FileNotFoundException {

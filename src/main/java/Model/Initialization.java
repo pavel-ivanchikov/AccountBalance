@@ -10,6 +10,10 @@ import java.util.Scanner;
 // этот класс должен проходится по журналу и выполнять все служеные сообщения.
 public class Initialization {
 
+    public static void run(Long initId) {
+        // сюда мы передаём айдишку майлайфа и получаем на выходе список процессов... Почему
+    }
+
     public static List<Process> run(List<Process> list, Process process, Long id) {
 
         // Переписал сообщения из файла в логбук, добавил процесс в список процессов.
