@@ -19,20 +19,18 @@ public class MyLife extends Process {
     }
 
     public static MyLife getMyLife() throws FileNotFoundException {
-//        MyLife localInstance = instance;
-//        if (localInstance == null) {
-        if (instance == null) {
+        MyLife localInstance = instance;
+        if (localInstance == null) {
             synchronized (MyLife.class) {
-//                localInstance = instance;
-//                if (localInstance == null) {
-//                    instance = localInstance = new MyLife();
-//                }
+                localInstance = instance;
+                if (localInstance == null) {
+                    instance = localInstance = new MyLife();
+                }
                 instance = new MyLife();
             }
         }
-        //       return localInstance;
         instance.type = ProcessTypes.MyLife;
-        return instance;
+        return localInstance;
     }
 
     public static MyLife getMyLife(Long id) {

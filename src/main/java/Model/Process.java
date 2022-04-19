@@ -35,6 +35,8 @@ import java.util.*;
 
 public abstract class Process {
 
+    public ProcessTypes type;
+
     /** У каждого процесса есть причина, породивший его процесс.
      Когда процессы смогут пересекаться нужно сделать это поле списком процессов */
     protected Process reason;
@@ -44,8 +46,6 @@ public abstract class Process {
 
     /** Это главное свойство объекта процесс */
     protected List<Message<LocalDateTime, String>> logBook;
-
-    public ProcessTypes type;
 
     protected Process() throws FileNotFoundException {
         reason = null;
@@ -72,7 +72,7 @@ public abstract class Process {
         logBook = new LinkedList<>();
 
         Message<LocalDateTime, String> message = new Message<>(localDateTime,
-                ServiceMessageTypes.OPN.toString() + " " + reason.id);
+                ServiceMessageTypes.OPN.toString() + " " + "from:" + " " + reason.id);
         logBook.add(message);
         addMessageToDataBase(message);
     }
@@ -84,7 +84,38 @@ public abstract class Process {
     }
 
     public Process getReason() {
-        return reason;
+        return this.reason;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getNumberOfLastMessages(int number) {
+        int num = number;
+        List<String> list = new ArrayList<>();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        final ListIterator<Message<LocalDateTime, String>> iterator = logBook.listIterator();
+        while (iterator.hasNext()) {iterator.next();}
+        if (num>logBook.size()) { num = logBook.size();}
+
+        for (int i = 0; i < num; i++) {
+
+            Message<LocalDateTime, String> message = iterator.previous();
+
+            stringBuilder.append(message.getDate().withNano(0));
+            stringBuilder.append(" ");
+            stringBuilder.append(message.getText());
+            stringBuilder.append("\n");
+
+//            list.add(message.getDate().withNano(0).toString());
+//            list.add(message.getText());
+//            list.add("\n");
+        }
+
+//        return list.toString();
+        return stringBuilder.toString();
     }
 
     /**
@@ -105,33 +136,10 @@ public abstract class Process {
         logBook.add(message);
     }
 
-    public List<String> getNumberOfLastMessages(int number) {
-        int num = number;
-        List<String> list = new ArrayList<>();
-
-        final ListIterator<Message<LocalDateTime, String>> iterator = logBook.listIterator();
-
-        while (iterator.hasNext()) {iterator.next();}
-
-       if (num>logBook.size()) { num = logBook.size();}
-
-        for (int i = 0; i < num; i++) {
-
-            Message<LocalDateTime, String> message = iterator.previous();
-
-            list.add(message.getDate().toString());
-            list.add(message.getText());
-        }
-
-        return list;
-    }
-
     /**
      * Медод добавляет сообщение в журнал, служеное или обычное.
      * @param message любое текстовое сообщение
      */
-
-
 
 //============9 марта, 11 урок, 34:00 на записи
     private void addMessageToDataBase(Message<LocalDateTime,String> message) throws FileNotFoundException {
@@ -142,10 +150,6 @@ public abstract class Process {
         str.write(message.getText() + "\n");
         str.flush();
         str.close();
-    }
-
-    public Long getMainInfo() {
-        return this.id;
     }
 
     /**

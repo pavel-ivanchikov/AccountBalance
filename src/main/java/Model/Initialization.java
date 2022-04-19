@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -11,7 +12,8 @@ import java.util.Scanner;
 public class Initialization {
 
     public static void run(Long initId) {
-        // сюда мы передаём айдишку майлайфа и получаем на выходе список процессов... Почему
+        // сюда мы передаём айдишку майлайфа и получаем на выходе список процессов...
+        // Теперь эта проблема решена, может надо иметь метод без параметров
     }
 
     public static List<Process> run(List<Process> list, Process process, Long id) {
@@ -63,7 +65,7 @@ public class Initialization {
         public static void read(Process process, long id) {
 
             try (FileReader reader = new FileReader("C:/" +
-                    "DataBaseAccountingOfDebts/" + id + ".txt"))
+                    "AccountBalance/" + "DataBase1/" + id + ".txt"))
             {
                 Scanner scanner = new Scanner(reader);
                 while (scanner.hasNextLine()) {

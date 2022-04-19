@@ -40,12 +40,12 @@ public class Person extends Process implements HavingName {
         return debt;
     }
 
-    @Override
-    public Long getMainInfo() {
-        System.out.println("id: " + id + " " +
-                name + " appeared in my system in " + logBook.get(0).getDate().withNano(0));
-        return this.id;
-    }
+//    @Override
+//    public Long getId() {
+//        System.out.println("id: " + id + " " +
+//                name + " appeared in my system in " + logBook.get(0).getDate().withNano(0));
+//        return this.id;
+//    }
 
     public String getName() {
         return this.name;

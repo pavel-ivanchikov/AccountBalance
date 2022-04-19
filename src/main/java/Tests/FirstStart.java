@@ -42,39 +42,54 @@ public class FirstStart {
         MyLife myLife = MyLife.getMyLife();
         TimeUnit.SECONDS.sleep(1);
         myLife.addMessage("Второе сообщение, потому что первое - служебное");
-        Person person = myLife.getNewPerson();
+        Person person1 = myLife.getNewPerson();
         TimeUnit.SECONDS.sleep(1);
-        person.addMessage("Второе сообщение");
+        person1.addMessage("Второе сообщение");
         myLife.addMessage("Четвёртое сообщение " );
-        person.setName("Человек2");
-        person.addMessage("Ой, случайно не то имя набрал...");
-        person.setName("Человек1");
-        Debt debt = person.getNewDebt();
-        debt.addMessage("Человек1 скоро собирается взять в долг " +
+        person1.setName("Человек2");
+        person1.addMessage("Ой, случайно не то имя набрал...");
+        person1.setName("Человек1");
+        Debt debt11 = person1.getNewDebt();
+        debt11.addMessage("Человек1 скоро собирается взять в долг " +
                 "создам процесс заранее");
         TimeUnit.SECONDS.sleep(1);
-        debt.iGive(new BigDecimal(1800));
-        debt.setDeadLine(LocalDateTime.now());
-        debt.addMessage("Я дал ему деньги наликом, " +
+        debt11.iGive(new BigDecimal(1800));
+        debt11.setDeadLine(LocalDateTime.now());
+        debt11.addMessage("Я дал ему деньги наликом, " +
                 "на остановке около метро площадь Мужества");
-        debt.addMessage("Было воскресенье, шёл снег");
+        debt11.addMessage("Было воскресенье, шёл снег");
         TimeUnit.SECONDS.sleep(1);
-        debt.iTake(new BigDecimal(1600));
+        debt11.iTake(new BigDecimal(1600));
         TimeUnit.SECONDS.sleep(1);
-        debt.iTake(new BigDecimal(200));
-        debt.addMessage("Долг отдал, всё окей.");
-        debt.getReason().addMessage("В этот раз не задержал, можно давать ему в будущем."); // это я записал в человека через долг
+        debt11.iTake(new BigDecimal(200));
+        debt11.addMessage("Долг отдал, всё окей.");
+        debt11.getReason().addMessage("В этот раз не задержал, можно давать ему в будущем."); // это я записал в человека через долг
+        Person person2 = myLife.getNewPerson();
+        person2.addMessage("Создаю второго человека для примера");
+        person2.setName("Человек2");
+        TimeUnit.SECONDS.sleep(1);
+        Debt debt21 = person2.getNewDebt();
+        debt21.addMessage("Это первый долг воторого человека");
+        TimeUnit.SECONDS.sleep(1);
+        debt21.iGive(new BigDecimal(2000));
+        TimeUnit.SECONDS.sleep(1);
+        debt11.iTake(new BigDecimal(277));
+        TimeUnit.SECONDS.sleep(1);
+        Debt debt22 = person2.getNewDebt();
+        debt22.addMessage("Это второй долг воторого человека");
+        TimeUnit.SECONDS.sleep(1);
+        debt22.iGive(new BigDecimal(3000));
         //=======================================================================================
-        System.out.println("Что уже произошло в системе: ");
-        System.out.println("создали первый процесс MyLife который породит все остальные процессы");
-        System.out.println("MyLife породил процесс Person");
-        System.out.println("Установил Имя у Person");
-        System.out.println("Person породил процесс Debt");
-        System.out.println("Дал в долг");
-        System.out.println("Установил какой-то Дэдлайн");
-        System.out.println("Получил часть долга");
-        System.out.println("Получил остаток долга");
-        System.out.println("Написал отзыв в журнале Person");
+//        System.out.println("Что уже произошло в системе: ");
+//        System.out.println("создали первый процесс MyLife который породит все остальные процессы");
+//        System.out.println("MyLife породил процесс Person");
+//        System.out.println("Установил Имя у Person");
+//        System.out.println("Person породил процесс Debt");
+//        System.out.println("Дал в долг");
+//        System.out.println("Установил какой-то Дэдлайн");
+//        System.out.println("Получил часть долга");
+//        System.out.println("Получил остаток долга");
+//        System.out.println("Написал отзыв в журнале Person");
         //=======================================================================================
         {
             Scanner in = new Scanner(System.in);
@@ -86,24 +101,19 @@ public class FirstStart {
         }
         //=======================================================================================
         System.out.println(" ");
-        System.out.println("Вывожу все 3 логбука которые есть");
+        System.out.println("Вывожу все 6 логбука которые есть");
         System.out.println(" ");
 
         System.out.println(myLife.getNumberOfLastMessages(100));
         System.out.println(" ");
-        System.out.println(person.getNumberOfLastMessages(100));
+        System.out.println(person1.getNumberOfLastMessages(100));
         System.out.println(" ");
-        System.out.println(debt.getNumberOfLastMessages(100));
-
+        System.out.println(debt11.getNumberOfLastMessages(100));
         System.out.println(" ");
-        System.out.println("MainInfo обо всех трёх процессах");
-        System.out.println("id: " + myLife.getMainInfo());
-        person.getMainInfo();
-        debt.getMainInfo();
-
+        System.out.println(person2.getNumberOfLastMessages(100));
         System.out.println(" ");
-        System.out.println("Имя человека: " + person.getName());
-        System.out.println("Сколько должен: " + debt.getBalance());
-        System.out.println("ДэдЛайн: " + debt.getDeadline().withNano(0));
+        System.out.println(debt21.getNumberOfLastMessages(100));
+        System.out.println(" ");
+        System.out.println(debt22.getNumberOfLastMessages(100));
     }
 }

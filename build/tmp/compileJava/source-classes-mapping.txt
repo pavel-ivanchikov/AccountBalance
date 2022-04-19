@@ -1,20 +1,28 @@
-Model/Process.java
- Model.Process
- Model.Process$Message
-Model/Person.java
- Model.Person
-Model/Initialization.java
- Model.Initialization
- Model.Initialization$DataBaseReader
 Model/ServiceMessageTypes.java
  Model.ServiceMessageTypes
 Model/Interfaces/MeasurableInRubles.java
  Model.Interfaces.MeasurableInRubles
 Tests/FirstStart.java
  Tests.FirstStart
-Model/Interfaces/HavingName.java
- Model.Interfaces.HavingName
 Model/MyLife.java
  Model.MyLife
 Model/Debt.java
  Model.Debt
+Model/Process.java
+ Model.Process
+ Model.Process$Message
+Model/Person.java
+ Model.Person
+Model/Interfaces/HavingName.java
+ Model.Interfaces.HavingName
+Controller/PersonRepresentation.java
+ Controller.PersonRepresentation
+Controller/GetListOfPerson.java
+ Controller.GetListOfPerson
+Model/ProcessTypes.java
+ Model.ProcessTypes
+Model/Initialization.java
+ Model.Initialization
+ Model.Initialization$DataBaseReader
+Tests/SecondStart.java
+ Tests.SecondStart

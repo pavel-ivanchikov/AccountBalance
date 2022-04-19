@@ -61,13 +61,13 @@ public class Debt extends Process implements MeasurableInRubles{
         return deadline;
     }
 
-    @Override
-    public Long getMainInfo() {
-        Person person = (Person) this.reason;
-        System.out.println("id: " + id + " " + person.getName() +
-                " owes me " + balance + " to " + deadline.withNano(0));
-        return this.id;
-    }
+//    @Override
+//    public Long getId() {
+//        Person person = (Person) this.reason;
+//        System.out.println("id: " + id + " " + person.getName() +
+//                " owes me " + balance + " to " + deadline.withNano(0));
+//        return this.id;
+//    }
 
     @Override
     public String toString() {
