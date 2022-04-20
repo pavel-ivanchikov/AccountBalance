@@ -1,22 +1,18 @@
 package Model;
 
-import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.LinkedList;
+//import java.util.List;
 import java.util.Scanner;
 
 // этот класс должен проходится по журналу и выполнять все служеные сообщения.
 public class Initialization {
 
-    public static void run(Long initId) {
-        // сюда мы передаём айдишку майлайфа и получаем на выходе список процессов...
-        // Теперь эта проблема решена, может надо иметь метод без параметров
-    }
-
-    public static List<Process> run(List<Process> list, Process process, Long id) {
+    public static LinkedList<Process> run(LinkedList<Process> list, Process process, Long id) {
 
         // Переписал сообщения из файла в логбук, добавил процесс в список процессов.
         DataBaseReader.read(process,id);

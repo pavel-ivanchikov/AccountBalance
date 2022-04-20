@@ -57,7 +57,7 @@ public abstract class Process {
         logBook = new LinkedList<>();
 
         Message<LocalDateTime, String> message = new Message<>(localDateTime,
-                ServiceMessageTypes.OPN.toString() + " " + 0);
+                ServiceMessageTypes.OPN.toString() + " " + "from:" + " " + 0);
         logBook.add(message);
         addMessageToDataBase(message);
     }

@@ -32,12 +32,10 @@ public class GetListOfPerson {
             if (process.type == ProcessTypes.Debt) {
                 assert process instanceof Debt;
                 Debt debt = (Debt) process;
-                PersonRepresentation personRepresentation = list.getLast();
+                PersonRepresentation personRepresentation = list.getFirst();
                 personRepresentation.sumOfBalances = personRepresentation.sumOfBalances.add(debt.getBalance());
             }
         }
-
-
         return list;
     }
 }

@@ -2,27 +2,27 @@ Model/ServiceMessageTypes.java
  Model.ServiceMessageTypes
 Model/Interfaces/MeasurableInRubles.java
  Model.Interfaces.MeasurableInRubles
-Tests/FirstStart.java
- Tests.FirstStart
-Model/MyLife.java
- Model.MyLife
-Model/Debt.java
- Model.Debt
+Controller/PersonRepresentation.java
+ Controller.PersonRepresentation
+Model/ProcessTypes.java
+ Model.ProcessTypes
+Model/Interfaces/HavingName.java
+ Model.Interfaces.HavingName
 Model/Process.java
  Model.Process
  Model.Process$Message
 Model/Person.java
  Model.Person
-Model/Interfaces/HavingName.java
- Model.Interfaces.HavingName
-Controller/PersonRepresentation.java
- Controller.PersonRepresentation
-Controller/GetListOfPerson.java
- Controller.GetListOfPerson
-Model/ProcessTypes.java
- Model.ProcessTypes
 Model/Initialization.java
  Model.Initialization
  Model.Initialization$DataBaseReader
+Controller/GetListOfPerson.java
+ Controller.GetListOfPerson
+Tests/FirstStart.java
+ Tests.FirstStart
 Tests/SecondStart.java
  Tests.SecondStart
+Model/MyLife.java
+ Model.MyLife
+Model/Debt.java
+ Model.Debt
