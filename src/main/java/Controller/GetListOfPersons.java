@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GetListOfPerson {
+public class GetListOfPersons {
 
     public static LinkedList<PersonRepresentation> get(List<Process> data) {
 
