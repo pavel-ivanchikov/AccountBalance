@@ -26,7 +26,6 @@ public class MyLife extends Process {
                 if (localInstance == null) {
                     instance = localInstance = new MyLife();
                 }
-                instance = new MyLife();
             }
         }
         instance.type = ProcessTypes.MyLife;

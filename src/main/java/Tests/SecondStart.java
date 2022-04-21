@@ -6,7 +6,10 @@ import Controller.*;
 
 //import java.io.*;
 //import java.math.BigDecimal;
+import java.io.FileNotFoundException;
+//import java.math.BigDecimal;
 import java.util.*;
+//import java.util.concurrent.TimeUnit;
 
 /**
  * Читаю из базы данных уже созданные раннее процессы и готовлю систему для продолжения ведения учёта.
@@ -14,12 +17,13 @@ import java.util.*;
 
 public class SecondStart {
 
+//    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
     public static void main(String[] args) {
 
         //список процессов в хронологическом порядке.
         LinkedList<Process> list = new LinkedList<>();
         // Инициализирую сначала процесс МояЖизнь, singleton.
-        Long id = 1650388472570L;
+        Long id = 1650578012144L;
         MyLife myLife = MyLife.getMyLife(id);
         //метод run итеративный, внутри он вызывает сам себя когда доходит до сообщения о создании процесса.
         list = Initialization.run(list, myLife, id);
@@ -29,14 +33,15 @@ public class SecondStart {
         //=====================================================================================================================================
         // Первый экран
         // Генерирую список людей
-        List<PersonRepresentation> representationList = GetListOfPersons.get(list);
+        List<PersonRepresentation> representationList1 = GetListOfPersons.get(list);
         // Вывожу список людей и их долгов
+        System.out.println("================================================================================");
         System.out.println("================================================================================");
         System.out.println("Моя жизнь");
         System.out.println("--------------------------------------------------------->");
         // Здесь должен быть спсок процесоов с которыми пересекается процесс, но для MyLife этот список пуст
         //
-        for (PersonRepresentation personRepresentation : representationList) {
+        for (PersonRepresentation personRepresentation : representationList1) {
             System.out.println(personRepresentation.id + " "
                                 + personRepresentation.name + " "
                                 + personRepresentation.sumOfBalances + " ");
@@ -49,20 +54,21 @@ public class SecondStart {
         // Вывожу списко сообщений из жунала MyLife
         System.out.println(list.getFirst().getNumberOfLastMessages(12));
         System.out.println("================================================================================");
+        //=====================================================================================================================================
 
         // Выбираю одного из людей, например Человек2. У него два долга.
-        Long idPerson21 = representationList.get(0).id;
+        Long idPerson2 = representationList1.get(0).id;
         // Ищу в списке процессов, процесс с таким Id.
-        Person person21 = (Person) FindProcessWithId.find(list,idPerson21);
+        Person person2 = (Person) FindProcessWithId.find(list,idPerson2);
         // Теперь у меня есть объект, к которому можно обратиться.
 
         //=====================================================================================================================================
         // Второй экран
         // Генерирую список долгов
-        List<DebtRepresentation> representationList2 = GetListOfDebts.get(list,idPerson21);
+        List<DebtRepresentation> representationList2 = GetListOfDebts.get(list,idPerson2);
         // Вывожу список долгов этого человека
         System.out.println("================================================================================");
-        System.out.println(person21.getName());
+        System.out.println(person2.getName());
         System.out.println("--------------------------------------------------------->");
         // Здесь должен быть спсок процесоов с которыми пересекается процесс Человек2, пока не реализовал пересечения...
         //
@@ -77,12 +83,51 @@ public class SecondStart {
         System.out.println("+");
         System.out.println("================================================================================");
         // Вывожу списко сообщений из жунала Человек2
-        System.out.println(person21.getNumberOfLastMessages(12));
+        System.out.println(person2.getNumberOfLastMessages(12));
         System.out.println("================================================================================");
+        //=====================================================================================================================================
 
+        // Выбираю один из долгов, например Долг22.
+        Long idDebt22 = representationList2.get(0).id;
+        // Ищу в списке процессов, процесс с таким Id.
+        Debt debt22 = (Debt) FindProcessWithId.find(list,idDebt22);
+        // Теперь у меня есть объект, к которому можно обратиться.
 
+        //=====================================================================================================================================
+        // Третий экран
+        // Генерировать список дочерних процессов не надо, потому что долг последний в этой иерархии.
+        // Вывожу заготовку под кнопку "Добавить"
+        System.out.println("================================================================================");
+        System.out.println("================================================================================");
+        System.out.println("Долг от такой-то даты...");
+        System.out.println("--------------------------------------------------------->");
+        System.out.println("================================================================================");
+        System.out.println("+");
+        System.out.println("================================================================================");
+        // Вывожу списко сообщений из жунала Долг22
+        System.out.println(debt22.getNumberOfLastMessages(12));
+        System.out.println("================================================================================");
+        //=====================================================================================================================================
 
-
+//        //=====================================================================================================================================
+//        debt22.addMessage("Скоро мне отдадут часть долга");
+//        TimeUnit.SECONDS.sleep(1);
+//        debt22.iTake(new BigDecimal(1500));
+//        TimeUnit.SECONDS.sleep(1);
+//        debt22.addMessage("Про вторую половину надо будет спросить позже");
+//
+//
+//        System.out.println(" ");
+//        System.out.println(" ");
+//
+//        // Третий экран ещё раз.
+//        // Вывожу заготовку под кнопку "Добавить"
+//        System.out.println("+");
+//        System.out.println("================================================================================");
+//        // Вывожу списко сообщений из жунала Долг22
+//        System.out.println(debt22.getNumberOfLastMessages(12));
+//        System.out.println("================================================================================");
+//        //=====================================================================================================================================
 
         for (Process process : list) {
             System.out.print(process.type);
