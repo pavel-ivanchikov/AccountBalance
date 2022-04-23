@@ -79,18 +79,18 @@ public class FirstStart {
         debt22.addMessage("Это второй долг воторого человека");
         TimeUnit.SECONDS.sleep(1);
         debt22.iGive(new BigDecimal(3000));
-        //=======================================================================================
-//        System.out.println("Что уже произошло в системе: ");
-//        System.out.println("создали первый процесс MyLife который породит все остальные процессы");
-//        System.out.println("MyLife породил процесс Person");
-//        System.out.println("Установил Имя у Person");
-//        System.out.println("Person породил процесс Debt");
-//        System.out.println("Дал в долг");
-//        System.out.println("Установил какой-то Дэдлайн");
-//        System.out.println("Получил часть долга");
-//        System.out.println("Получил остаток долга");
-//        System.out.println("Написал отзыв в журнале Person");
-        //=======================================================================================
+
+        debt22.addMessage("Скоро мне отдадут часть долга");
+        TimeUnit.SECONDS.sleep(1);
+        debt22.iTake(new BigDecimal(1500));
+        TimeUnit.SECONDS.sleep(1);
+        debt22.addMessage("Про вторую половину надо будет спросить позже");
+
+
+        LocalDateTime localDateTime = LocalDateTime.of(22, 4, 24, 18, 0);
+        debt22.setReminder(localDateTime,"Первое, тестовое напоминание");
+        debt22.close();
+
         {
             Scanner in = new Scanner(System.in);
             System.out.println("Введите текс для добавления в журнал MyLife");

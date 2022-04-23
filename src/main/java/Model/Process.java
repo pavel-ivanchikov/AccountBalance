@@ -44,6 +44,9 @@ public abstract class Process {
     /** Это дата первого сообщения в журнале процесса */
     protected Long id;
 
+    /** Это напоминание, которое всё таки будет только одно у одного процесса. */
+    protected Message<LocalDateTime, String> reminder;
+
     /** Это главное свойство объекта процесс */
     protected List<Message<LocalDateTime, String>> logBook;
 
@@ -93,28 +96,19 @@ public abstract class Process {
 
     public String getNumberOfLastMessages(int number) {
         int num = number;
-        List<String> list = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
 
-        final ListIterator<Message<LocalDateTime, String>> iterator = logBook.listIterator();
+        ListIterator<Message<LocalDateTime, String>> iterator = logBook.listIterator();
         while (iterator.hasNext()) {iterator.next();}
         if (num>logBook.size()) { num = logBook.size();}
 
         for (int i = 0; i < num; i++) {
-
             Message<LocalDateTime, String> message = iterator.previous();
-
             stringBuilder.append(message.getDate().withNano(0));
             stringBuilder.append(" ");
             stringBuilder.append(message.getText());
             stringBuilder.append("\n");
-
-//            list.add(message.getDate().withNano(0).toString());
-//            list.add(message.getText());
-//            list.add("\n");
         }
-
-//        return list.toString();
         return stringBuilder.toString();
     }
 
@@ -122,16 +116,13 @@ public abstract class Process {
      * Продвигает процесс на шаг, добавляя сообщение в журнал, служеное или обычное.
      * @param string любое текстовое сообщение
      */
-
     public void addMessage(String string) throws FileNotFoundException {
         Message<LocalDateTime, String> message = new Message<>(LocalDateTime.now(), string);
         logBook.add(message);
         addMessageToDataBase(message);
     }
-
     // метод используется при инициализации процесса
-
-    public void addExistingMessage(LocalDateTime localDateTime, String string) throws FileNotFoundException {
+    public void addMessageInPast(LocalDateTime localDateTime, String string) throws FileNotFoundException {
         Message<LocalDateTime, String> message = new Message<>(localDateTime, string);
         logBook.add(message);
     }
@@ -140,7 +131,6 @@ public abstract class Process {
      * Медод добавляет сообщение в журнал, служеное или обычное.
      * @param message любое текстовое сообщение
      */
-
 //============9 марта, 11 урок, 34:00 на записи
     private void addMessageToDataBase(Message<LocalDateTime,String> message) throws FileNotFoundException {
         FileOutputStream fileOutputStream = new FileOutputStream("C:/" +
@@ -150,6 +140,22 @@ public abstract class Process {
         str.write(message.getText() + "\n");
         str.flush();
         str.close();
+    }
+
+    // Начинаю писать методы меняющий напоминание.
+    public void setReminder(LocalDateTime localDateTime,String text) throws FileNotFoundException {
+        this.reminder = new Message<>(localDateTime,text);
+        this.addMessage(ServiceMessageTypes.REM.toString() + " " + this.reminder.date.withNano(0) + " " + this.reminder.text);
+    }
+    public void setReminderInPast(LocalDateTime localDateTime,String text) {
+        this.reminder = new Message<>(localDateTime,text);
+    }
+    public void close() throws FileNotFoundException {
+        this.reminder = null;
+        this.addMessage(ServiceMessageTypes.CLS.toString());
+    }
+    public void closeInPast(){
+        this.reminder = null;
     }
 
     /**

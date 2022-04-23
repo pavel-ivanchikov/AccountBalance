@@ -10,9 +10,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FindProcessWithId {
+public class GetProcessWithId {
 
-    public static Process find(List<Process> data, Long id) {
+    public static Process get(List<Process> data, Long id) {
 
         for (Process process : data) {
             if (process.getId().equals(id)) {

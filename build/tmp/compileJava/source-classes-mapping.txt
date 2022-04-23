@@ -1,34 +1,34 @@
-Model/Interfaces/HavingName.java
- Model.Interfaces.HavingName
+Controller/PersonRepresentation.java
+ Controller.PersonRepresentation
 Model/ServiceMessageTypes.java
  Model.ServiceMessageTypes
 Model/Interfaces/MeasurableInRubles.java
  Model.Interfaces.MeasurableInRubles
-Tests/FirstStart.java
- Tests.FirstStart
-Controller/GetListOfPersons.java
- Controller.GetListOfPersons
-Model/MyLife.java
- Model.MyLife
-Model/Debt.java
- Model.Debt
+Model/ProcessTypes.java
+ Model.ProcessTypes
+Model/Interfaces/HavingName.java
+ Model.Interfaces.HavingName
 Controller/DebtRepresentation.java
  Controller.DebtRepresentation
 Model/Process.java
  Model.Process
  Model.Process$Message
+Controller/GetProcessWithId.java
+ Controller.GetProcessWithId
 Model/Person.java
  Model.Person
+Model/MyLife.java
+ Model.MyLife
+Controller/GetListOfDebts.java
+ Controller.GetListOfDebts
+Tests/FirstStart.java
+ Tests.FirstStart
+Model/Debt.java
+ Model.Debt
+Controller/GetListOfPersons.java
+ Controller.GetListOfPersons
 Model/Initialization.java
  Model.Initialization
  Model.Initialization$DataBaseReader
-Controller/PersonRepresentation.java
- Controller.PersonRepresentation
-Model/ProcessTypes.java
- Model.ProcessTypes
-Controller/FindProcessWithId.java
- Controller.FindProcessWithId
-Controller/GetListOfDebts.java
- Controller.GetListOfDebts
 Tests/SecondStart.java
  Tests.SecondStart

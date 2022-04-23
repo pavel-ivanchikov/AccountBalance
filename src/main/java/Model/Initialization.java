@@ -1,6 +1,7 @@
 package Model;
 
 //import java.io.FileNotFoundException;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -25,7 +26,12 @@ public class Initialization {
             String[] strings = string.split(" ");
 
             // Служебное сообщение OPN не обрабатываю, поле причинного процесса заполняю в NPR или в NDB.
-            if (strings[0].equals(ServiceMessageTypes.NPR.toString())) {
+            if (strings[0].equals(ServiceMessageTypes.REM.toString())) {
+                LocalDateTime localDateTime = LocalDateTime.parse(strings[1]);
+                process.setReminderInPast(localDateTime, string);
+            } else if (strings[0].equals(ServiceMessageTypes.CLS.toString())) {
+                process.closeInPast();
+            } else if (strings[0].equals(ServiceMessageTypes.NPR.toString())) {
                 next_id = Long.parseLong(strings[1]);
                 Person person = new Person(next_id);
                 person.reason = process;
@@ -73,7 +79,7 @@ public class Initialization {
                     for (int i = 2; i < strings.length; i++) {
                         string.append(" ").append(strings[i]);
                     }
-                    process.addExistingMessage(localDateTime, string.toString());
+                    process.addMessageInPast(localDateTime, string.toString());
                 }
             }
             catch(IOException ex){
