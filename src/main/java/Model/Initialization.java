@@ -26,9 +26,13 @@ public class Initialization {
             String[] strings = string.split(" ");
 
             // Служебное сообщение OPN не обрабатываю, поле причинного процесса заполняю в NPR или в NDB.
+            // Служебное сообщение CRS не обрабатываю, оно испльзуется пока только в контроллере.
             if (strings[0].equals(ServiceMessageTypes.REM.toString())) {
                 LocalDateTime localDateTime = LocalDateTime.parse(strings[1]);
-                process.setReminderInPast(localDateTime, string);
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i=2; i<strings.length; i++) {
+                    stringBuilder.append(" ").append(strings[i]);}
+                process.setReminderInPast(localDateTime, stringBuilder.toString());
             } else if (strings[0].equals(ServiceMessageTypes.CLS.toString())) {
                 process.closeInPast();
             } else if (strings[0].equals(ServiceMessageTypes.NPR.toString())) {

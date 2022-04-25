@@ -94,6 +94,16 @@ public abstract class Process {
         return this.id;
     }
 
+    public LocalDateTime getReminderDate() {
+        return this.reminder.date;
+    }
+    public String getReminderText() {
+        return this.reminder.text;
+    }
+    public boolean hasRemider() {
+        return (this.reminder != null);
+    }
+
     public String getNumberOfLastMessages(int number) {
         int num = number;
         StringBuilder stringBuilder = new StringBuilder();
@@ -140,6 +150,16 @@ public abstract class Process {
         str.write(message.getText() + "\n");
         str.flush();
         str.close();
+    }
+
+    // Начинаю писать тут функционал пересечения, он будет прост, одно служебное и одно обычное сообщение в текущий процесс,
+    // и одно в тот процесс с которым хотим пересечься с той-же датой.
+    // Это служебное сообщение не будет никак обрабатываться, только на уровне контроллера,
+    // чтобы составить список пересекающихся процессов.
+    public void cross(Process process,String sting) throws FileNotFoundException{
+        process.addMessage(ServiceMessageTypes.CRS.toString() + " " + this.id);
+        this.addMessage(ServiceMessageTypes.CRS.toString() + " " + process.id);
+        this.addMessage(sting);
     }
 
     // Начинаю писать методы меняющий напоминание.

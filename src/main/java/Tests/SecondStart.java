@@ -7,8 +7,9 @@ import Controller.*;
 //import java.io.*;
 //import java.math.BigDecimal;
 //import java.math.BigDecimal;
-import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
 //import java.time.LocalDateTime;
+import java.io.FileNotFoundException;
 import java.util.*;
 //import java.util.concurrent.TimeUnit;
 
@@ -23,10 +24,21 @@ public class SecondStart {
         //список процессов в хронологическом порядке.
         LinkedList<Process> list = new LinkedList<>();
         // нициализирую сначала процесс МояЖизнь, singleton.
-        Long id = 1650741612198L;
+        Long id = 1650885021702L;
         MyLife myLife = MyLife.getMyLife(id);
         //метод run итеративный, внутри он вызывает сам себя когда доходит до сообщения о создании процесса.
         list = Initialization.run(list, myLife, id);
+
+        //=====================================================================================================================================
+        //=====================================================================================================================================
+        // Здесь я буду что-то делать с базой перед выводом.
+
+
+        //=====================================================================================================================================
+        //=====================================================================================================================================
+
+
+
 
         //=====================================================================================================================================
         // Первый экран
@@ -48,6 +60,11 @@ public class SecondStart {
         System.out.println("================================================================================");
         // Вывожу заготовку под кнопку "Добавить"
         System.out.println("+");
+        if (myLife.hasRemider()) {
+            System.out.println("Reminder: " + myLife.getReminderDate().toString() + myLife.getReminderText());
+        } else {
+            System.out.println("Reminder: none");
+        }
         System.out.println("================================================================================");
         // Вывожу списко сообщений из жунала MyLife
         System.out.println(list.getFirst().getNumberOfLastMessages(12));
@@ -78,6 +95,11 @@ public class SecondStart {
         System.out.println("================================================================================");
         // Вывожу заготовку под кнопку "Добавить"
         System.out.println("+");
+        if (person2.hasRemider()) {
+            System.out.println("Reminder: " + person2.getReminderDate().toString() + person2.getReminderText());
+        } else {
+            System.out.println("Reminder: none");
+        }
         System.out.println("================================================================================");
         // Вывожу списко сообщений из жунала Человек2
         System.out.println(person2.getNumberOfLastMessages(12));
@@ -101,6 +123,11 @@ public class SecondStart {
         // Здесь должен быть спсок процесоов с которыми пересекается процесс Человек2, пока не реализовал пересечения...
         System.out.println("================================================================================");
         System.out.println("+");
+        if (debt22.hasRemider()) {
+            System.out.println("Reminder: " + debt22.getReminderDate().toString() + debt22.getReminderText());
+        } else {
+            System.out.println("Reminder: none");
+        }
         System.out.println("================================================================================");
         // Вывожу списко сообщений из жунала Долг22
         System.out.println(debt22.getNumberOfLastMessages(12));
