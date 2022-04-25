@@ -100,7 +100,7 @@ public abstract class Process {
     public String getReminderText() {
         return this.reminder.text;
     }
-    public boolean hasRemider() {
+    public boolean hasReminder() {
         return (this.reminder != null);
     }
 
@@ -154,18 +154,41 @@ public abstract class Process {
 
     // Начинаю писать тут функционал пересечения, он будет прост, одно служебное и одно обычное сообщение в текущий процесс,
     // и одно в тот процесс с которым хотим пересечься с той-же датой.
-    // Это служебное сообщение не будет никак обрабатываться, только на уровне контроллера,
-    // чтобы составить список пересекающихся процессов.
     public void cross(Process process,String sting) throws FileNotFoundException{
         process.addMessage(ServiceMessageTypes.CRS.toString() + " " + this.id);
         this.addMessage(ServiceMessageTypes.CRS.toString() + " " + process.id);
         this.addMessage(sting);
     }
+    public LinkedList<Long> getCrossProcessId() {
+        LinkedList<Long> list = new LinkedList<>();
+        Iterator<Message<LocalDateTime,String>> iterator = logBook.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            String[] strings = iterator.next().getText().split(" ");
+            if (strings[0].equals(ServiceMessageTypes.CRS.toString())) {
+                list.add(Long.parseLong(strings[1]));
+            }
+        }
+        return list;
+    }
+    public LinkedList<LocalDateTime> getCrossProcessCrossTime() {
+        LinkedList<LocalDateTime> list = new LinkedList<>();
+        Iterator<Message<LocalDateTime,String>> iterator = logBook.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Message<LocalDateTime,String> message = iterator.next();
+            String[] strings = message.text.split(" ");
+            if (strings[0].equals(ServiceMessageTypes.CRS.toString())) {
+                list.add(message.date);
+            }
+        }
+        return list;
+    }
 
     // Начинаю писать методы меняющий напоминание.
     public void setReminder(LocalDateTime localDateTime,String text) throws FileNotFoundException {
         this.reminder = new Message<>(localDateTime,text);
-        this.addMessage(ServiceMessageTypes.REM.toString() + " " + this.reminder.date.withNano(0) + " " + this.reminder.text);
+        this.addMessage(ServiceMessageTypes.REM.toString() + " " + this.reminder.date.toString() + " " + this.reminder.text);
     }
     public void setReminderInPast(LocalDateTime localDateTime,String text) {
         this.reminder = new Message<>(localDateTime,text);

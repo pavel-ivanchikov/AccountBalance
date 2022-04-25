@@ -9,7 +9,7 @@ import Controller.*;
 //import java.math.BigDecimal;
 //import java.io.FileNotFoundException;
 //import java.time.LocalDateTime;
-import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
 import java.util.*;
 //import java.util.concurrent.TimeUnit;
 
@@ -60,7 +60,7 @@ public class SecondStart {
         System.out.println("================================================================================");
         // Вывожу заготовку под кнопку "Добавить"
         System.out.println("+");
-        if (myLife.hasRemider()) {
+        if (myLife.hasReminder()) {
             System.out.println("Reminder: " + myLife.getReminderDate().toString() + myLife.getReminderText());
         } else {
             System.out.println("Reminder: none");
@@ -79,27 +79,44 @@ public class SecondStart {
 
         //=====================================================================================================================================
         // Второй экран
-        // Генерирую список долгов
-        List<DebtRepresentation> representationList2 = GetListOfDebts.get(list,idPerson2);
-        // Вывожу список долгов этого человека
+
+        System.out.println("================================================================================");
+        // Генерирую список просессов с которыми есть пересечения
+        List<CrossProcessRepresentation> representationListCross = GetCrossListSecond.get(list,idPerson2);
+        // Вывожу список  просессов с которыми есть пересечения
+        for (CrossProcessRepresentation representation : representationListCross) {
+            System.out.println(representation.crossTime + " "
+                    + representation.type + " "
+                    + representation.remaiderTime + " ");
+            System.out.println("--------------------------------------------------------->");
+        }
+
         System.out.println("================================================================================");
         System.out.println(person2.getName());
         System.out.println("--------------------------------------------------------->");
-        // Здесь должен быть спсок процесоов с которыми пересекается процесс Человек2, пока не реализовал пересечения...
+        System.out.println("================================================================================");
+
+        // Генерирую список долгов
+        List<DebtRepresentation> representationList2 = GetListOfDebts.get(list,idPerson2);
+        // Вывожу список долгов этого человека
         for (DebtRepresentation debtRepresentation : representationList2) {
             System.out.println(debtRepresentation.id + " "
                     + debtRepresentation.deadLine + " "
                     + debtRepresentation.balance + " ");
             System.out.println("--------------------------------------------------------->");
         }
-        System.out.println("================================================================================");
+
         // Вывожу заготовку под кнопку "Добавить"
+        System.out.println("================================================================================");
         System.out.println("+");
-        if (person2.hasRemider()) {
+        System.out.println("================================================================================");
+
+        if (person2.hasReminder()) {
             System.out.println("Reminder: " + person2.getReminderDate().toString() + person2.getReminderText());
         } else {
             System.out.println("Reminder: none");
         }
+
         System.out.println("================================================================================");
         // Вывожу списко сообщений из жунала Человек2
         System.out.println(person2.getNumberOfLastMessages(12));
@@ -117,13 +134,24 @@ public class SecondStart {
         // Генерировать список дочерних процессов не надо, потому что долг последний в этой иерархии.
         // Вывожу заготовку под кнопку "Добавить"
         System.out.println("================================================================================");
+
+        // Генерирую список просессов с которыми есть пересечения
+        List<CrossProcessRepresentation> representationListCross2 = GetCrossListSecond.get(list,idDebt22);
+        // Вывожу список  просессов с которыми есть пересечения
+        for (CrossProcessRepresentation representation : representationListCross2) {
+            System.out.println(representation.crossTime + " "
+                    + representation.type + " "
+                    + representation.remaiderTime + " ");
+            System.out.println("--------------------------------------------------------->");
+        }
+
         System.out.println("================================================================================");
         System.out.println("Долг от такой-то даты...");
         System.out.println("--------------------------------------------------------->");
-        // Здесь должен быть спсок процесоов с которыми пересекается процесс Человек2, пока не реализовал пересечения...
+
         System.out.println("================================================================================");
         System.out.println("+");
-        if (debt22.hasRemider()) {
+        if (debt22.hasReminder()) {
             System.out.println("Reminder: " + debt22.getReminderDate().toString() + debt22.getReminderText());
         } else {
             System.out.println("Reminder: none");
