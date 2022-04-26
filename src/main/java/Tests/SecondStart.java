@@ -82,7 +82,7 @@ public class SecondStart {
 
         System.out.println("================================================================================");
         // Генерирую список просессов с которыми есть пересечения
-        List<CrossProcessRepresentation> representationListCross = GetCrossListSecond.get(list,idPerson2);
+        List<CrossProcessRepresentation> representationListCross = GetCrossList.get(list,idPerson2);
         // Вывожу список  просессов с которыми есть пересечения
         for (CrossProcessRepresentation representation : representationListCross) {
             System.out.println(representation.crossTime + " "
@@ -136,7 +136,7 @@ public class SecondStart {
         System.out.println("================================================================================");
 
         // Генерирую список просессов с которыми есть пересечения
-        List<CrossProcessRepresentation> representationListCross2 = GetCrossListSecond.get(list,idDebt22);
+        List<CrossProcessRepresentation> representationListCross2 = GetCrossList.get(list,idDebt22);
         // Вывожу список  просессов с которыми есть пересечения
         for (CrossProcessRepresentation representation : representationListCross2) {
             System.out.println(representation.crossTime + " "

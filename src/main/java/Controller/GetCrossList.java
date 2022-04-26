@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class GetCrossListSecond {
+public class GetCrossList {
 
     public static LinkedList<CrossProcessRepresentation> get(List<Process> data, Long id) {
         LinkedList<CrossProcessRepresentation> list = new LinkedList<>();
