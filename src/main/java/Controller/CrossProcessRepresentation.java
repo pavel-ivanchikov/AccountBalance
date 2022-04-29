@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class CrossProcessRepresentation {
     public ProcessTypes type;
+    public LocalDateTime startTime;
     public LocalDateTime crossTime;
     public LocalDateTime remaiderTime;
     public long id;

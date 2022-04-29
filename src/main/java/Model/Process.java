@@ -44,8 +44,10 @@ public abstract class Process {
     /** Это дата первого сообщения в журнале процесса */
     protected Long id;
 
-    /** Это напоминание, которое всё таки будет только одно у одного процесса. */
+    /** Это напоминание, которое будет всё таки только одно у одного процесса. */
     protected Message<LocalDateTime, String> reminder;
+
+    protected LocalDateTime startTime;
 
     /** Это главное свойство объекта процесс */
     protected List<Message<LocalDateTime, String>> logBook;
@@ -55,6 +57,7 @@ public abstract class Process {
 
         LocalDateTime localDateTime = LocalDateTime.now();
         ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+        startTime = zonedDateTime.toLocalDateTime();
         id = zonedDateTime.toInstant().toEpochMilli();
 
         logBook = new LinkedList<>();
@@ -70,6 +73,7 @@ public abstract class Process {
 
         LocalDateTime localDateTime = LocalDateTime.now();
         ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+        startTime = zonedDateTime.toLocalDateTime();
         id = zonedDateTime.toInstant().toEpochMilli();
 
         logBook = new LinkedList<>();
@@ -86,17 +90,16 @@ public abstract class Process {
         logBook = new LinkedList<>();
     }
 
-    public Process getReason() {
-        return this.reason;
+    public Process getReason() { return this.reason; }
+    public Long getId() { return this.id; }
+    public Long getReasonId() {
+        if (this.reason == null) { return 0L; }
+        return this.reason.id;
     }
 
-    public Long getId() {
-        return this.id;
-    }
+    public LocalDateTime getStartTime() { return this.startTime;}
 
-    public LocalDateTime getReminderDate() {
-        return this.reminder.date;
-    }
+    public LocalDateTime getReminderDate() { return this.reminder.date; }
     public String getReminderText() {
         return this.reminder.text;
     }

@@ -22,7 +22,6 @@ public class Debt extends Process implements MeasurableInRubles{
     }
 
     Debt(Long id){
-
         super(id);
         this.type = ProcessTypes.Debt;
     }

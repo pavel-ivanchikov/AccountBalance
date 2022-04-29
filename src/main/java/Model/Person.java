@@ -19,7 +19,6 @@ public class Person extends Process implements HavingName {
     }
 
     Person(Long id){
-
         super(id);
         this.type = ProcessTypes.Person;
     }

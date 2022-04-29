@@ -11,6 +11,7 @@ import java.util.List;
 
 public class GetCrossList {
 
+    // Получаю список процессов которые пересекаются с данным процесоом, без детей
     public static LinkedList<CrossProcessRepresentation> get(List<Process> data, Long id) {
         LinkedList<CrossProcessRepresentation> list = new LinkedList<>();
         Process process = GetProcessWithId.get(data,id);
@@ -20,6 +21,11 @@ public class GetCrossList {
         for (Long l : listId) {
             CrossProcessRepresentation crossProcessRepresentation = new CrossProcessRepresentation();
             Process process1 = GetProcessWithId.get(data,l);
+            if (process1.getReasonId().equals(id)) {
+                localDateTimeIterator.next();
+                continue;
+            }
+            crossProcessRepresentation.startTime = process1.getStartTime();
             crossProcessRepresentation.type = process1.type;
             crossProcessRepresentation.crossTime = localDateTimeIterator.next();
             if (process1.hasReminder()) {

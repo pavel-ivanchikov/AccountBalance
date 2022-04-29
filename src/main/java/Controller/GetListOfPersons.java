@@ -26,11 +26,12 @@ public class GetListOfPersons {
                 Person person = (Person) process;
                 PersonRepresentation representation = new PersonRepresentation();
                 representation.name = person.getName();
+                representation.startTime = person.getStartTime();
                 representation.id = person.getId();
                 list.addFirst(representation);
             }
             if (process.type == ProcessTypes.Debt) {
-                assert process instanceof Debt;
+                if (!(process instanceof Debt)) throw new AssertionError();
                 Debt debt = (Debt) process;
                 PersonRepresentation personRepresentation = list.getFirst();
                 personRepresentation.sumOfBalances = personRepresentation.sumOfBalances.add(debt.getBalance());

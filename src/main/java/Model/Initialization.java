@@ -27,7 +27,9 @@ public class Initialization {
 
             // Служебное сообщение OPN не обрабатываю, поле причинного процесса заполняю в NPR или в NDB.
             // Служебное сообщение CRS не обрабатываю, оно испльзуется пока только в контроллере.
-            if (strings[0].equals(ServiceMessageTypes.REM.toString())) {
+            if (strings[0].equals(ServiceMessageTypes.OPN.toString())) {
+                process.startTime = process.logBook.get(0).getDate();
+            } else if (strings[0].equals(ServiceMessageTypes.REM.toString())) {
                 LocalDateTime localDateTime = LocalDateTime.parse(strings[1]);
                 StringBuilder stringBuilder = new StringBuilder();
                 for (int i=2; i<strings.length; i++) {

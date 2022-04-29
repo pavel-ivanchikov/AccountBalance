@@ -26,6 +26,7 @@ public class GetListOfDebts {
             if (process.getReason().getId().equals(id)) {
                 DebtRepresentation representation = new DebtRepresentation();
                 Debt debt = (Debt) process;
+                representation.startTime = debt.getStartTime();
                 representation.deadLine = debt.getDeadline();
                 representation.balance = debt.getBalance();
                 representation.id = debt.getId();
