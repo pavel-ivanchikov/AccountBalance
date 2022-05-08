@@ -1,21 +1,19 @@
-Controller/PersonRepresentation.java
- Controller.PersonRepresentation
-Controller/DebtRepresentation.java
- Controller.DebtRepresentation
+Model/Interfaces/HavingName.java
+ Model.Interfaces.HavingName
 Model/ServiceMessageTypes.java
  Model.ServiceMessageTypes
 Model/Interfaces/MeasurableInRubles.java
  Model.Interfaces.MeasurableInRubles
-Model/Interfaces/HavingName.java
- Model.Interfaces.HavingName
-Tests/FirstStart.java
- Tests.FirstStart
 Model/ProcessTypes.java
  Model.ProcessTypes
-Controller/GetCrossListThird.java
- Controller.GetCrossListThird
+Controller/PersonRepresentation.java
+ Controller.PersonRepresentation
+Tests/FirstStart.java
+ Tests.FirstStart
 Controller/CrossProcessRepresentation.java
  Controller.CrossProcessRepresentation
+Controller/DebtRepresentation.java
+ Controller.DebtRepresentation
 Model/Process.java
  Model.Process
  Model.Process$Message
@@ -28,13 +26,15 @@ Model/Initialization.java
  Model.Initialization$DataBaseReader
 Controller/GetListOfDebts.java
  Controller.GetListOfDebts
+Controller/GetCrossList.java
+ Controller.GetCrossList
 Model/Debt.java
  Model.Debt
 Model/MyLife.java
  Model.MyLife
 Controller/GetListOfPersons.java
  Controller.GetListOfPersons
-Controller/GetCrossListSecond.java
- Controller.GetCrossListSecond
+Controller/GetRemainder.java
+ Controller.GetRemainder
 Tests/SecondStart.java
  Tests.SecondStart

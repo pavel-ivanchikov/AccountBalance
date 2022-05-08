@@ -122,6 +122,7 @@ public abstract class Process {
             stringBuilder.append(message.getText());
             stringBuilder.append("\n");
         }
+        stringBuilder.deleteCharAt(stringBuilder.length()-1);
         return stringBuilder.toString();
     }
 
