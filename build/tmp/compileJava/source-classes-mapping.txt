@@ -8,17 +8,19 @@ Model/ProcessTypes.java
  Model.ProcessTypes
 Controller/PersonRepresentation.java
  Controller.PersonRepresentation
-Tests/FirstStart.java
- Tests.FirstStart
+Model/MyLife.java
+ Model.MyLife
 Controller/CrossProcessRepresentation.java
  Controller.CrossProcessRepresentation
-Controller/DebtRepresentation.java
- Controller.DebtRepresentation
+Controller/GetCrossList.java
+ Controller.GetCrossList
 Model/Process.java
  Model.Process
  Model.Process$Message
 Controller/GetProcessWithId.java
  Controller.GetProcessWithId
+Controller/DebtRepresentation.java
+ Controller.DebtRepresentation
 Model/Person.java
  Model.Person
 Model/Initialization.java
@@ -26,12 +28,10 @@ Model/Initialization.java
  Model.Initialization$DataBaseReader
 Controller/GetListOfDebts.java
  Controller.GetListOfDebts
-Controller/GetCrossList.java
- Controller.GetCrossList
+Tests/FirstStart.java
+ Tests.FirstStart
 Model/Debt.java
  Model.Debt
-Model/MyLife.java
- Model.MyLife
 Controller/GetListOfPersons.java
  Controller.GetListOfPersons
 Controller/GetRemainder.java

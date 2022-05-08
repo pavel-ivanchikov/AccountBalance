@@ -30,9 +30,8 @@ public class Debt extends Process implements MeasurableInRubles{
         this.deadline = localDateTime;
         addMessage(ServiceMessageTypes.SDL.toString() + " " + this.deadline.withNano(0));
     }
-    public void setDeadLineInPast(LocalDateTime localDateTime){
-        this.deadline = localDateTime;
-    }
+    public void setDeadLineInPast(LocalDateTime localDateTime) { this.deadline = localDateTime; }
+    public boolean hasDeadLine() { return (this.deadline != null); }
 
 
     public void iGive (BigDecimal amount) throws FileNotFoundException {

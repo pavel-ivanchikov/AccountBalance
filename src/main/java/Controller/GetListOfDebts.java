@@ -28,6 +28,7 @@ public class GetListOfDebts {
                 Debt debt = (Debt) process;
                 representation.startTime = debt.getStartTime();
                 representation.deadLine = debt.getDeadline();
+                representation.hasDeadLine = debt.hasDeadLine();
                 representation.balance = debt.getBalance();
                 representation.id = debt.getId();
                 list.addFirst(representation);
