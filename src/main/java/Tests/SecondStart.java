@@ -37,8 +37,9 @@ public class SecondStart {
         System.out.println(" ");
         // Первый экран
         // Здесь может быть список процесоов с которыми пересекается процесс, но для MyLife этот список пуст
-        System.out.println("Cross process:");
+        System.out.println("Cross processes:");
         System.out.println("none");
+        System.out.println("Main process:");
         System.out.println("My Life");
         System.out.println("--------------------------------------------------------->");
         // Вывожу список людей
@@ -73,18 +74,19 @@ public class SecondStart {
         // Генерирую список просессов с которыми есть пересечения
         List<CrossProcessRepresentation> representationListCross2 = GetCrossList.get(list,idPerson1);
         // Вывожу список  просессов с которыми есть пересечения
-        System.out.println("Cross process:");
+        System.out.println("Cross processes:");
         for (CrossProcessRepresentation representation : representationListCross2) {
             System.out.println(representation.type + " cross this process at: "
                     + representation.crossTime.withNano(0));
             System.out.println("--------------------------------------------------------->");
         }
+        System.out.println("Main process:");
         System.out.println("Person: " + person1.getName());
         System.out.println("--------------------------------------------------------->");
         // Генерирую список долгов
         List<DebtRepresentation> representationList2 = GetListOfDebts.get(list,idPerson1);
         // Вывожу список долгов этого человека
-        System.out.println("Children: process");
+        System.out.println("Children processes:");
         for (DebtRepresentation debtRepresentation : representationList2) {
             System.out.println(((!debtRepresentation.hasDeadLine) ?
                     ("Dead Line do not set!") :
@@ -116,18 +118,19 @@ public class SecondStart {
         // Генерирую список просессов с которыми есть пересечения
         List<CrossProcessRepresentation> representationListCross22 = GetCrossList.get(list,idPerson2);
         // Вывожу список  просессов с которыми есть пересечения
-        System.out.println("Cross process:");
+        System.out.println("Cross processes:");
         for (CrossProcessRepresentation representation : representationListCross22) {
             System.out.println(representation.type + " cross this process at: "
                     + representation.crossTime.withNano(0));
             System.out.println("--------------------------------------------------------->");
         }
+        System.out.println("Main process:");
         System.out.println("Person: " + person2.getName());
         System.out.println("--------------------------------------------------------->");
         // Генерирую список долгов
         List<DebtRepresentation> representationList22 = GetListOfDebts.get(list,idPerson2);
         // Вывожу список долгов этого человека
-        System.out.println("Children process:");
+        System.out.println("Children processes:");
         for (DebtRepresentation debtRepresentation : representationList22) {
             System.out.println(((!debtRepresentation.hasDeadLine) ?
                     ("Dead Line do not set!") :
@@ -159,16 +162,17 @@ public class SecondStart {
         // Генерирую список просессов с которыми есть пересечения
         List<CrossProcessRepresentation> representationListCross3 = GetCrossList.get(list,idDebt22);
         // Вывожу список  просессов с которыми есть пересечения
-        System.out.println("Cross process:");
+        System.out.println("Cross processes:");
         for (CrossProcessRepresentation representation : representationListCross3) {
             System.out.println(representation.type + " cross this process at: "
                     + representation.crossTime.withNano(0));
             System.out.println("--------------------------------------------------------->");
         }
-        System.out.println("Debt. Dead line is " + (!debt22.hasDeadLine()?"not set":debt22.getDeadline().getMonth() + " " + debt22.getDeadline().getDayOfMonth()));
+        System.out.println("Main process:");
+        System.out.println("Debt: " + debt22.getBalance() + " Dead line is " + (!debt22.hasDeadLine()?"not set":debt22.getDeadline().getMonth() + " " + debt22.getDeadline().getDayOfMonth()));
         System.out.println("--------------------------------------------------------->");
         // Генерировать список дочерних процессов не надо, потому что долг последний в этой иерархии.
-        System.out.println("Children process:");
+        System.out.println("Children processes:");
         System.out.println("none");
         // Вывожу заготовку под кнопку "Добавить"
         System.out.println("+++");

@@ -8,12 +8,12 @@ Model/ProcessTypes.java
  Model.ProcessTypes
 Controller/PersonRepresentation.java
  Controller.PersonRepresentation
-Model/MyLife.java
- Model.MyLife
+Controller/GetRemainder.java
+ Controller.GetRemainder
 Controller/CrossProcessRepresentation.java
  Controller.CrossProcessRepresentation
-Controller/GetCrossList.java
- Controller.GetCrossList
+Model/Debt.java
+ Model.Debt
 Model/Process.java
  Model.Process
  Model.Process$Message
@@ -30,11 +30,11 @@ Controller/GetListOfDebts.java
  Controller.GetListOfDebts
 Tests/FirstStart.java
  Tests.FirstStart
-Model/Debt.java
- Model.Debt
+Model/MyLife.java
+ Model.MyLife
 Controller/GetListOfPersons.java
  Controller.GetListOfPersons
-Controller/GetRemainder.java
- Controller.GetRemainder
+Controller/GetCrossList.java
+ Controller.GetCrossList
 Tests/SecondStart.java
  Tests.SecondStart
