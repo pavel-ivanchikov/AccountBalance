@@ -55,7 +55,6 @@ public class MyLife extends Process {
         addMessage(ServiceMessageTypes.NPR.toString() + " " + person.id);
         return person;
     }
-
     @Override
     public String toString() {
         return "MyLife{" +
@@ -63,6 +62,5 @@ public class MyLife extends Process {
                 '}';
     }
 
-    // Process.Message message =
 }
 

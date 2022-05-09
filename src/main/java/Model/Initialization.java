@@ -1,18 +1,28 @@
 package Model;
 
-//import java.io.FileNotFoundException;
-//import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
-//import java.util.List;
 import java.util.Scanner;
 
-// этот класс должен проходится по журналу и выполнять все служеные сообщения.
+/**
+ * Загрузка реализована таким образом: идём вдоль процесса,
+ * доходим до нового процесса, идём по нему до конца и возвращаемся к первому процессу.
+ *
+ * Какой загрузка ещё может быть:
+ * Может производить загрузку, так сказать, в одном потоке,
+ *  хронологически, по дате сообщений, по одному сообщению добавлять и видя список
+ *  состоящий из следующих сообщений в каждом процессе добавлять самое старое из них.
+ *  Инициализацию по сообщениям, хронологически, держа в памяти все процессы
+ *  которые сейчас находятся на стадии инициализации.
+ */
+
+
 public class Initialization {
 
+    // этот метод проходит по журналу и выполняет все служеные сообщения.
     public static LinkedList<Process> run(LinkedList<Process> list, Process process, Long id) {
 
         // Переписал сообщения из файла в логбук, добавил процесс в список процессов.
@@ -20,12 +30,11 @@ public class Initialization {
         list.add(process);
         Long next_id;
 
-
+        // А теперь выполняю все служебные сообщения.
         for (Process.Message<LocalDateTime, String> message : process.logBook) {
             String string = message.getText();
             String[] strings = string.split(" ");
 
-            // Служебное сообщение OPN не обрабатываю, поле причинного процесса заполняю в NPR или в NDB.
             // Служебное сообщение CRS не обрабатываю, оно испльзуется пока только в контроллере.
             if (strings[0].equals(ServiceMessageTypes.OPN.toString())) {
                 process.startTime = process.logBook.get(0).getDate();
@@ -69,9 +78,7 @@ public class Initialization {
     }
 
     public static class DataBaseReader {
-
         public static void read(Process process, long id) {
-
             try (FileReader reader = new FileReader("C:/" +
                     "AccountBalance/" + "DataBase1/" + id + ".txt"))
             {
@@ -93,6 +100,4 @@ public class Initialization {
             }
         }
     }
-
 }
-

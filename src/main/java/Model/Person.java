@@ -6,8 +6,7 @@ import java.io.*;
 
 /**
  * Это процесс, содержащий информацию об определенном человеке, и порождающие процессы долгов
- * В этот процесс попадают сообщения касающиеся личности человека берущего или дающего в долг,
- * и которые нельзя записать в один из существующих долгов.
+ * В этот процесс попадают сообщения касающиеся личности человека берущего или дающего в долг.
  */
 public class Person extends Process implements HavingName {
 
@@ -32,19 +31,11 @@ public class Person extends Process implements HavingName {
         this.name = string;
     }
 
-
     public Debt getNewDebt() throws FileNotFoundException {
         Debt debt = new Debt(this);
         addMessage(ServiceMessageTypes.NDB.toString() + " " + debt.id);
         return debt;
     }
-
-//    @Override
-//    public Long getId() {
-//        System.out.println("id: " + id + " " +
-//                name + " appeared in my system in " + logBook.get(0).getDate().withNano(0));
-//        return this.id;
-//    }
 
     public String getName() {
         return this.name;
@@ -60,4 +51,3 @@ public class Person extends Process implements HavingName {
                 '}';
     }
 }
-

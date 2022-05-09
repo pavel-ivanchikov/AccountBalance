@@ -1,8 +1,8 @@
 package Model;
 
 public enum ProcessTypes {
-    Debt,   //
-    Person, //
-    MyLife, //
-    Wish    //
+    Debt,
+    Person,
+    MyLife,
+    // Wish
 }

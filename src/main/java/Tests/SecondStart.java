@@ -3,17 +3,10 @@ package Tests;
 import Model.*;
 import Model.Process;
 import Controller.*;
-
-//import java.io.*;
-//import java.math.BigDecimal;
-//import java.io.FileNotFoundException;
-//import java.time.LocalDateTime;
-//import java.io.FileNotFoundException;
 import java.util.*;
-//import java.util.concurrent.TimeUnit;
 
 /**
- * Читаю из базы данных уже созданные раннее процессы и готовлю систему для продолжения ведения учёта.
+ * Читаю из базы данных уже созданные раннее процессы и вывожу в консоль так как это будет выглядеть на экране телефона.
  */
 
 public class SecondStart {
@@ -27,10 +20,6 @@ public class SecondStart {
         MyLife myLife = MyLife.getMyLife(myLifeId);
         //метод run итеративный, внутри он вызывает сам себя когда доходит до сообщения о создании процесса.
         list = Initialization.run(list, myLife, myLifeId);
-
-        //=====================================================================================================================================
-        // Здесь я буду что-то делать с базой перед выводом.
-        //=====================================================================================================================================
 
         System.out.println(" ");
         System.out.println("================================================================================");

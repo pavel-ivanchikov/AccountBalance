@@ -9,15 +9,14 @@ import java.time.LocalDateTime;
 /**
  * В этот процесс попадают сообщения касающиеся конкретного долга.
  */
-
 public class Debt extends Process implements MeasurableInRubles{
 
     private BigDecimal balance = new BigDecimal(0);
     private LocalDateTime deadline;
 
     //primary constructor
-    Debt(Process parent) throws FileNotFoundException {
-        super(parent);
+    Debt(Process process) throws FileNotFoundException {
+        super(process);
         this.type = ProcessTypes.Debt;
     }
 
@@ -59,14 +58,6 @@ public class Debt extends Process implements MeasurableInRubles{
         return deadline;
     }
 
-//    @Override
-//    public Long getId() {
-//        Person person = (Person) this.reason;
-//        System.out.println("id: " + id + " " + person.getName() +
-//                " owes me " + balance + " to " + deadline.withNano(0));
-//        return this.id;
-//    }
-
     @Override
     public String toString() {
         return "Debt{" +
@@ -80,4 +71,3 @@ public class Debt extends Process implements MeasurableInRubles{
                 '}';
     }
 }
-

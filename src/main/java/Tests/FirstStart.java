@@ -5,31 +5,12 @@ import Model.*;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-//import java.util.ArrayList;
-//import java.util.List;
 import java.util.Scanner;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * Цель проекта. Создать систему учёта долгов, должников и любых мыслей вокруг долгов.
- *
- * Функционал (use cases):
- * - сохранять любые мысли о долге, изменять баланс, дату возврата и т.д.
- * - иметь доступ ко всей истории учёта долгов.
- * - напоминать мне о предстоящих запланированных событиях.
- * - база данных принципиально неизменна.
- * -
- *
- * - в текстовом документе записи следущего вида:
- * Service Message
- *  LocalDate ServiceMessage some_parameter hashcode/n
- * Other Message
- *  LocalDate text hashcode/n
- *
- * Пока создаю примитивную систему, где есть всего один должник и у этого человека всего один долг.
- * Изменяю имя, ввожу сумму долга, устанавливаю дэдлайн и параллельно пишу сообщения то в один
- * процесс, то в другой. И добавляю новое сообщение в MyLife вводя его с клавиатуры
+ * Создаю базу данных с которой дальше буду работать.
  */
 
 public class FirstStart {

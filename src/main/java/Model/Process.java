@@ -11,47 +11,30 @@ import java.util.*;
 
 /**
  * Процесс - это сущность, порождаемая другим процессом
- * и хранящая журнал комметариев (пометок), о том что проиходит в рамках этого процесса.
- * Буду называть эти комментарии(пометки) - сообщениями, служебными или рукописными.
- * Прошлое процесса неизменно, можно добавлять сообщения о прошлом только в настоящем.
- *
- * Следующий шаг: сделать загрузку по уже существующей базе текстовых сообщений.
- *
- * Мысли по поводу следующего шага:
- * - Сначала добавить возможность процессам пересекаться, например для перезачитывания.
- * - Добавить возможность процессам сливаться, чтобы перестать их воспринимать отдельно.
- * - Когда инициализация дойдёт до момента пересечения или слияния процессов надо подождать
- * пока второй процесс тоже дойдёт до этого места а уже потом продолжать инициализацию.
- *
- *  Только что пришла мысль! Может производить загрузку, так сказать, в одном потоке,
- *  хронологически, по дате сообщений, по одному сообщению добавлять и видя список
- *  состоящий из следующих сообщений в каждом процессе добавлять самое старое из них.
- *  Поэтому можно пока не торопиться с добавлением функций пересечения и слияния,
- *  вроде как той проблемы, где инициализация происходит по нескольким потокам и это как-то
- *  мешает инициализации, не возникает.
- *  Так что буду делать инициализацию по сообщениям, хронологически, держа в памяти все процессы
- *  которые сейчас находятся на стадии инициализации.
+ * и хранящая журнал сообщений (комметариев(пометок)), о том что проиходит в рамках этого процесса.
+ * Сообщения могут быть служебными или рукописными.
  */
 
 public abstract class Process {
 
     public ProcessTypes type;
 
-    /** У каждого процесса есть причина, породивший его процесс.
-     Когда процессы смогут пересекаться нужно сделать это поле списком процессов */
+    /** У каждого процесса есть причина, породивший его процесс.*/
     protected Process reason;
 
-    /** Это дата первого сообщения в журнале процесса */
+    /** Дата первого сообщения в журнале процесса, выраженная  в милисекундах с 1 января 1970 */
     protected Long id;
 
-    /** Это напоминание, которое будет всё таки только одно у одного процесса. */
+    /** Напоминание */
     protected Message<LocalDateTime, String> reminder;
 
+    /** Время из первого сообщения, оно совпадает с id, если перевести в миллисекунды. */
     protected LocalDateTime startTime;
 
-    /** Это главное свойство объекта процесс */
+    /** Главное свойство объекта процесс */
     protected List<Message<LocalDateTime, String>> logBook;
 
+    // Конструктор без параметра, используется только для создания первого процесса.
     protected Process() throws FileNotFoundException {
         reason = null;
 
@@ -84,20 +67,21 @@ public abstract class Process {
         addMessageToDataBase(message);
     }
 
+    // Конструктор используется только для Инициализации
     protected Process(Long id) {
         reason = null;
         this.id = id;
         logBook = new LinkedList<>();
     }
 
-    public Process getReason() { return this.reason; }
     public Long getId() { return this.id; }
+    public LocalDateTime getStartTime() { return this.startTime;}
+
+    public Process getReason() { return this.reason; }
     public Long getReasonId() {
         if (this.reason == null) { return 0L; }
         return this.reason.id;
     }
-
-    public LocalDateTime getStartTime() { return this.startTime;}
 
     public LocalDateTime getReminderDate() { return this.reminder.date; }
     public String getReminderText() {
@@ -157,7 +141,7 @@ public abstract class Process {
     }
 
     // Начинаю писать тут функционал пересечения, он будет прост, одно служебное и одно обычное сообщение в текущий процесс,
-    // и одно в тот процесс с которым хотим пересечься с той-же датой.
+    // и одно служнбнон в тот процесс с которым хотим пересечься с той-же датой.
     public void cross(Process process,String sting) throws FileNotFoundException{
         process.addMessage(ServiceMessageTypes.CRS.toString() + " " + this.id);
         this.addMessage(ServiceMessageTypes.CRS.toString() + " " + process.id);
@@ -165,10 +149,8 @@ public abstract class Process {
     }
     public LinkedList<Long> getCrossProcessId() {
         LinkedList<Long> list = new LinkedList<>();
-        Iterator<Message<LocalDateTime,String>> iterator = logBook.iterator();
-        int i = 0;
-        while (iterator.hasNext()) {
-            String[] strings = iterator.next().getText().split(" ");
+        for (Message<LocalDateTime, String> localDateTimeStringMessage : logBook) {
+            String[] strings = localDateTimeStringMessage.getText().split(" ");
             if (strings[0].equals(ServiceMessageTypes.CRS.toString())) {
                 list.add(Long.parseLong(strings[1]));
             }
@@ -177,10 +159,7 @@ public abstract class Process {
     }
     public LinkedList<LocalDateTime> getCrossProcessCrossTime() {
         LinkedList<LocalDateTime> list = new LinkedList<>();
-        Iterator<Message<LocalDateTime,String>> iterator = logBook.iterator();
-        int i = 0;
-        while (iterator.hasNext()) {
-            Message<LocalDateTime,String> message = iterator.next();
+        for (Message<LocalDateTime, String> message : logBook) {
             String[] strings = message.text.split(" ");
             if (strings[0].equals(ServiceMessageTypes.CRS.toString())) {
                 list.add(message.date);
@@ -228,10 +207,8 @@ public abstract class Process {
         Process process = (Process) o;
         return Objects.equals(reason, process.reason) && id.equals(process.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(reason, id);
     }
-
 }

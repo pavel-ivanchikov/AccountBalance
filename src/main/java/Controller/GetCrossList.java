@@ -1,16 +1,12 @@
 package Controller;
 
 import Model.Process;
-
-//import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class GetCrossList {
-
     // Получаю список процессов которые пересекаются с данным процесоом, без детей, но с внуками.
     // Можно отложить вопрос чтобы внуки не попадали в список пересечений, но пока можно не париться,
     // я ведь вообще не вывожу список пересечений для главного процесса.
@@ -37,5 +33,4 @@ public class GetCrossList {
         }
         return list;
     }
-
 }
